@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Normativas DGCyE</title>
+    <style>
+        :root {
+            --primary-blue: #003366;
+            --secondary-blue: #00509e;
+            --accent-blue: #0066cc;
+            --light-bg: #f5f7fa;
+            --border-color: #d0d7de;
+            --text-color: #1f2328;
+            --text-light: #656d76;
+            --white: #ffffff;
+            --success: #2da44e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+                sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(90deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: var(--white);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 8px rgba(0, 51, 102, 0.2);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-logo {
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary-blue);
+            font-size: 0.75rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .header-text h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .header-text p {
+            font-size: 0.875rem;
+            opacity: 0.95;
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 250px 1fr 300px;
+            gap: 1.5rem;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 1rem 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+            position: sticky;
+            top: 1rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0.25rem;
+        }
+
+        .sidebar-nav button {
+            width: 100%;
+            text-align: left;
+            padding: 0.75rem 1.25rem;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .sidebar-nav button:hover {
+            background: var(--light-bg);
+            color: var(--accent-blue);
+            padding-left: 1.5rem;
+        }
+
+        .sidebar-nav button.active {
+            background: #e7f3ff;
+            color: var(--accent-blue);
+            border-left: 3px solid var(--accent-blue);
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* Search Section */
+        .search-section {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-section h2 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-family: inherit;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        /* Filters */
+        .filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.375rem;
+        }
+
+        .filter-group label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .filter-select {
+            padding: 0.625rem 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-family: inherit;
+            background: var(--white);
+            cursor: pointer;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.625rem 1.25rem;
+            border: 1px solid var(--border-color);
+            background: var(--white);
+            color: var(--text-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--light-bg);
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: var(--white);
+            border-color: var(--accent-blue);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-blue);
+        }
+
+        /* Results Header */
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .results-count {
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        /* Results */
+        .results-section {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .results-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .result-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+            transition: all 0.2s;
+            background: var(--white);
+        }
+
+        .result-card:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.1);
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.75rem;
+            gap: 1rem;
+        }
+
+        .result-title {
+            flex: 1;
+        }
+
+        .result-type {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #e7f3ff;
+            color: var(--accent-blue);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-number {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .result-date {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            white-space: nowrap;
+        }
+
+        .result-desc {
+            color: var(--text-color);
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .result-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .result-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-small {
+            padding: 0.5rem 0.875rem;
+            font-size: 0.8125rem;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+        }
+
+        /* Right Sidebar */
+        .right-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .sidebar-card {
+            background: var(--white);
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.25rem;
+        }
+
+        .calendar-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-weight: 600;
+            color: var(--primary-blue);
+            padding: 0.375rem;
+            font-size: 0.875rem;
+        }
+
+        .calendar-day {
+            padding: 0.375rem;
+            text-align: center;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .calendar-day:hover {
+            background: var(--light-bg);
+        }
+
+        .calendar-day.active {
+            background: var(--accent-blue);
+            color: var(--white);
+        }
+
+        .norm-type-list {
+            list-style: none;
+        }
+
+        .norm-type-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .norm-type-list li:last-child {
+            border-bottom: none;
+        }
+
+        .norm-type-list li:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: 2% auto;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s;
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            background: none;
+            border: none;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            color: var(--text-color);
+            background: var(--light-bg);
+            border-radius: 4px;
+        }
+
+        .modal-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .modal-header h2 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-body {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-section {
+            margin-bottom: 1.25rem;
+        }
+
+        .modal-section h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .modal-section p {
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .annex-list {
+            list-style: none;
+        }
+
+        .annex-list li {
+            padding: 0.75rem;
+            background: var(--light-bg);
+            margin-bottom: 0.5rem;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .annex-name {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .annex-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background: #fff4e5;
+            color: #d97706;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 200px 1fr;
+            }
+            .right-sidebar {
+                grid-column: 1 / -1;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .sidebar-card {
+                flex: 1;
+                min-width: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+            .sidebar {
+                position: static;
+            }
+            .sidebar-nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.25rem;
+            }
+            .sidebar-nav li {
+                flex: 1;
+                min-width: 120px;
+            }
+            .sidebar-nav button {
+                padding: 0.5rem;
+                text-align: center;
+                font-size: 0.8125rem;
+            }
+            .sidebar-nav button:hover {
+                padding-left: 0.5rem;
+            }
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .search-box {
+                flex-direction: column;
+            }
+            .filters {
+                grid-template-columns: 1fr;
+            }
+            .result-header {
+                flex-direction: column;
+            }
+            .result-date {
+                align-self: flex-start;
+            }
+            .modal-content {
+                margin: 5% auto;
+                width: 95%;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="header-logo">
+                DGCyE<br>GBA
+            </div>
+            <div class="header-text">
+                <h1>Portal de Normativas DGCyE</h1>
+                <p>Dirección General de Cultura y Educación - Provincia de Buenos Aires</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <nav>
+                <ul class="sidebar-nav">
+                    <li><button class="active" data-section="normativas">📚 Normativas</button></li>
+                    <li><button data-section="planes">📖 Planes de Estudio</button></li>
+                    <li><button data-section="resoluciones">📄 Resoluciones</button></li>
+                    <li><button data-section="disposiciones">📋 Disposiciones</button></li>
+                    <li><button data-section="circulares">📨 Circulares</button></li>
+                    <li><button data-section="destacados">⭐ Destacados</button></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Search Section -->
+            <section class="search-section">
+                <h2>Buscador de Normativas</h2>
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="search-input" 
+                        placeholder="Buscar por número, palabras clave o descripción..."
+                        autocomplete="off"
+                    >
+                </div>
+
+                <!-- Filters -->
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="tipoFilter">Tipo de Normativa</label>
+                        <select id="tipoFilter" class="filter-select">
+                            <option value="todos">Todas las normativas</option>
+                            <option value="Resolución">Resolución</option>
+                            <option value="Disposición">Disposición</option>
+                            <option value="Circular">Circular</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="anioFilter">Año</label>
+                        <select id="anioFilter" class="filter-select">
+                            <option value="todos">Todos los años</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="mesFilter">Mes</label>
+                        <select id="mesFilter" class="filter-select">
+                            <option value="todos">Todos los meses</option>
+                            <option value="Enero">Enero</option>
+                            <option value="Febrero">Febrero</option>
+                            <option value="Marzo">Marzo</option>
+                            <option value="Abril">Abril</option>
+                            <option value="Mayo">Mayo</option>
+                            <option value="Junio">Junio</option>
+                            <option value="Julio">Julio</option>
+                            <option value="Agosto">Agosto</option>
+                            <option value="Septiembre">Septiembre</option>
+                            <option value="Octubre">Octubre</option>
+                            <option value="Noviembre">Noviembre</option>
+                            <option value="Diciembre">Diciembre</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-actions">
+                    <button class="btn btn-primary" onclick="limpiarFiltros()">Limpiar Filtros</button>
+                    <button class="btn" onclick="mostrarTodos()">Mostrar Todas</button>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section">
+                <div class="results-header">
+                    <h2>Resultados</h2>
+                    <span class="results-count" id="resultsCount">0 resultados</span>
+                </div>
+                <div class="results-list" id="resultsList">
+                    <!-- Results will be rendered dynamically -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+            <!-- Calendar -->
+            <div class="sidebar-card">
+                <h3>📅 Calendario Histórico</h3>
+                <div class="calendar">
+                    <div class="calendar-header">Octubre 2026</div>
+                    <div class="calendar-day">L</div>
+                    <div class="calendar-day">M</div>
+                    <div class="calendar-day">X</div>
+                    <div class="calendar-day">J</div>
+                    <div class="calendar-day">V</div>
+                    <div class="calendar-day">S</div>
+                    <div class="calendar-day">D</div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day">1</div>
+                    <div class="calendar-day">2</div>
+                    <div class="calendar-day">3</div>
+                    <div class="calendar-day">4</div>
+                    <div class="calendar-day">5</div>
+                    <div class="calendar-day">6</div>
+                    <div class="calendar-day">7</div>
+                    <div class="calendar-day">8</div>
+                    <div class="calendar-day">9</div>
+                    <div class="calendar-day">10</div>
+                    <div class="calendar-day">11</div>
+                    <div class="calendar-day">12</div>
+                    <div class="calendar-day">13</div>
+                    <div class="calendar-day">14</div>
+                    <div class="calendar-day">15</div>
+                    <div class="calendar-day">16</div>
+                    <div class="calendar-day">17</div>
+                    <div class="calendar-day">18</div>
+                    <div class="calendar-day">19</div>
+                    <div class="calendar-day">20</div>
+                    <div class="calendar-day">21</div>
+                    <div class="calendar-day">22</div>
+                    <div class="calendar-day">23</div>
+                    <div class="calendar-day">24</div>
+                    <div class="calendar-day">25</div>
+                    <div class="calendar-day">26</div>
+                    <div class="calendar-day">27</div>
+                    <div class="calendar-day">28</div>
+                    <div class="calendar-day">29</div>
+                    <div class="calendar-day">30</div>
+                    <div class="calendar-day">31</div>
+                </div>
+            </div>
+
+            <!-- Tipos de Normativas -->
+            <div class="sidebar-card">
+                <h3>📑 Tipos de Normativas</h3>
+                <ul class="norm-type-list">
+                    <li onclick="filtrarPorTipo('Resolución')">📄 Resoluciones</li>
+                    <li onclick="filtrarPorTipo('Disposición')">📋 Disposiciones</li>
+                    <li onclick="filtrarPorTipo('Circular')">📨 Circulares</li>
+                </ul>
+            </div>
+
+            <!-- Documentos Destacados -->
+            <div class="sidebar-card">
+                <h3>⭐ Documentos Destacados</h3>
+                <ul class="norm-type-list">
+                    <li onclick="buscarPorNumero('651/26')">Res. 651/26 - Licitación</li>
+                    <li onclick="buscarPorNumero('420/25')">Disp. 420/25 - Planes de Estudio</li>
+                    <li onclick="buscarPorNumero('969/25')">Res. 969/25 - Normativa</li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Modal for Details -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="cerrarModal()">×</button>
+            <div class="modal-header">
+                <h2 id="modalTitle">Título de la Normativa</h2>
+                <p id="modalSubtitle" style="color: var(--text-light);"></p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>Información General</h3>
+                    <p><strong>Tipo:</strong> <span id="modalTipo"></span></p>
+                    <p><strong>Número:</strong> <span id="modalNumero"></span></p>
+                    <p><strong>Año:</strong> <span id="modalAnio"></span></p>
+                    <p><strong>Mes:</strong> <span id="modalMes"></span></p>
+                    <p><strong>Fecha de Publicación:</strong> <span id="modalFecha"></span></p>
+                    <p><strong>Categoría:</strong> <span id="modalCategoria"></span></p>
+                </div>
+                <div class="modal-section">
+                    <h3>Descripción</h3>
+                    <p id="modalDescripcion"></p>
+                </div>
+                <div class="modal-section">
+                    <h3>Anexos y Documentos Asociados</h3>
+                    <p id="modalAnexosCount"></p>
+                    <ul class="annex-list" id="modalAnexosList">
+                        <!-- Annexes will be rendered here -->
+                    </ul>
+                </div>
+            </div>
+            <div class="filter-actions">
+                <button class="btn btn-primary" onclick="cerrarModal()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modelo de datos unificado - Actividad 18 y 19
+        const normativasDGCyE = [
+            {
+                id: 1,
+                nro: "651/26",
+                tipo: "Resolución",
+                anio: 2026,
+                mes: "Octubre",
+                desc: "Aprueba pliegos y autoriza llamada a Licitación Pública para talleres de EEST.",
+                fechaPublicacion: "15/10/2026",
+                categoria: "Licitaciones",
+                anexos: [
+                    { nombre: "Pliego_Tecnico_651-26.pdf", tipo: "PDF", demo: true },
+                    { nombre: "Anexo_I_Especificaciones.xlsx", tipo: "XLSX", demo: true }
+                ]
+            },
+            {
+                id: 2,
+                nro: "420/25",
+                tipo: "Disposición",
+                anio: 2025,
+                mes: "Marzo",
+                desc: "Actualización de planes de estudio ciclo superior 7mo año Técnico en Programación.",
+                fechaPublicacion: "20/03/2025",
+                categoria: "Planes de Estudio",
+                anexos: [
+                    { nombre: "Grilla_Curricular_Programacion_2025.pdf", tipo: "PDF", demo: true },
+                    { nombre: "Plan_Estudio_Completo.xlsx", tipo: "XLSX", demo: true }
+                ]
+            },
+            {
+                id: 3,
+                nro: "128/26",
+                tipo: "Circular",
+                anio: 2026,
+                mes: "Mayo",
+                desc: "Pautas organizativas para ferias de ciencia distritales y regionales ACTE GBA.",
+                fechaPublicacion: "05/05/2026",
+                categoria: "Actividades",
+                anexos: [
+                    { nombre: "Bases_Ferias_Ciencia_2026.pdf", tipo: "PDF", demo: true }
+                ]
+            },
+            {
+                id: 4,
+                nro: "969/25",
+                tipo: "Resolución",
+                anio: 2025,
+                mes: "Diciembre",
+                desc: "Aprueba la estructura curricular para el ciclo lectivo 2026 en Escuelas de Educación Técnica.",
+                fechaPublicacion: "28/12/2025",
+                categoria: "Currícula",
+                anexos: [
+                    { nombre: "Estructura_Curricular_2026.pdf", tipo: "PDF", demo: true },
+                    { nombre: "Horarios_Tipos.xlsx", tipo: "XLSX", demo: true },
+                    { nombre: "Carga_Horaria.pdf", tipo: "PDF", demo: true }
+                ]
+            }
+        ];
+
+        let normativaActual = null;
+
+        // Inicializar años en el filtro
+        function inicializarFiltros() {
+            const anioFilter = document.getElementById('anioFilter');
+            const anios = [...new Set(normativasDGCyE.map(n => n.anio))].sort((a, b) => b - a);
+            anios.forEach(anio => {
+                const option = document.createElement('option');
+                option.value = anio;
+                option.textContent = anio;
+                anioFilter.appendChild(option);
+            });
+        }
+
+        // Filtrar normativas
+        function filtrarNormativas() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const tipoFiltro = document.getElementById('tipoFilter').value;
+            const anioFiltro = document.getElementById('anioFilter').value;
+            const mesFiltro = document.getElementById('mesFilter').value;
+
+            const resultados = normativasDGCyE.filter(normativa => {
+                // Filtrar por búsqueda (número, descripción)
+                const coincideBusqueda = searchTerm === '' || 
+                    normativa.nro.toLowerCase().includes(searchTerm) ||
+                    normativa.desc.toLowerCase().includes(searchTerm) ||
+                    normativa.tipo.toLowerCase().includes(searchTerm);
+                
+                // Filtrar por tipo
+                const coincideTipo = tipoFiltro === 'todos' || normativa.tipo === tipoFiltro;
+                
+                // Filtrar por año
+                const coincideAnio = anioFiltro === 'todos' || normativa.anio.toString() === anioFiltro;
+                
+                // Filtrar por mes
+                const coincideMes = mesFiltro === 'todos' || normativa.mes === mesFiltro;
+                
+                return coincideBusqueda && coincideTipo && coincideAnio && coincideMes;
+            });
+
+            renderizarResultados(resultados);
+        }
+
+        // Renderizar resultados
+        function renderizarResultados(lista) {
+            const resultsList = document.getElementById('resultsList');
+            const resultsCount = document.getElementById('resultsCount');
+            
+            resultsCount.textContent = `${lista.length} resultado${lista.length !== 1 ? 's' : ''} encontrado${lista.length !== 1 ? 's' : ''}`;
+            
+            if (lista.length === 0) {
+                resultsList.innerHTML = `
+                    <div class="no-results">
+                        <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">📭 No se encontraron resultados</p>
+                        <p style="font-size: 0.9rem;">Intenta ajustar los filtros o el término de búsqueda</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            resultsList.innerHTML = lista.map(normativa => `
+                <article class="result-card">
+                    <div class="result-header">
+                        <div class="result-title">
+                            <span class="result-type">${normativa.tipo}</span>
+                            <div class="result-number">${normativa.nro}</div>
+                        </div>
+                        <div class="result-date">
+                            📅 ${normativa.mes} ${normativa.anio}
+                            ${normativa.fechaPublicacion ? `<br>Pub: ${normativa.fechaPublicacion}` : ''}
+                        </div>
+                    </div>
+                    <p class="result-desc">${normativa.desc}</p>
+                    <div class="result-meta">
+                        <span class="result-meta-item">🏷️ ${normativa.categoria || 'Sin categoría'}</span>
+                        <span class="result-meta-item">📎 ${normativa.anexos ? normativa.anexos.length : 0} anexo${normativa.anexos && normativa.anexos.length !== 1 ? 's' : ''}</span>
+                    </div>
+                    <div class="result-actions">
+                        <button class="btn btn-primary btn-small" onclick="verDetalles(${normativa.id})">Ver Detalles</button>
+                        <button class="btn btn-small" onclick="verDetalles(${normativa.id})">Consultar Anexos</button>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        // Ver detalles de una normativa
+        function verDetalles(id) {
+            normativaActual = normativasDGCyE.find(n => n.id === id);
+            if (!normativaActual) return;
+            
+            document.getElementById('modalTitle').textContent = `${normativaActual.tipo} ${normativaActual.nro}`;
+            document.getElementById('modalSubtitle').textContent = normativaActual.desc;
+            document.getElementById('modalTipo').textContent = normativaActual.tipo;
+            document.getElementById('modalNumero').textContent = normativaActual.nro;
+            document.getElementById('modalAnio').textContent = normativaActual.anio;
+            document.getElementById('modalMes').textContent = normativaActual.mes;
+            document.getElementById('modalFecha').textContent = normativaActual.fechaPublicacion || 'No disponible';
+            document.getElementById('modalCategoria').textContent = normativaActual.categoria || 'Sin categoría';
+            document.getElementById('modalDescripcion').textContent = normativaActual.desc;
+            
+            const anexos = normativaActual.anexos || [];
+            document.getElementById('modalAnexosCount').textContent = 
+                `Total: ${anexos.length} documento${anexos.length !== 1 ? 's' : ''} asociado${anexos.length !== 1 ? 's' : ''}`;
+            
+            const anexosList = document.getElementById('modalAnexosList');
+            if (anexos.length === 0) {
+                anexosList.innerHTML = '<li style="justify-content: center; color: var(--text-light);">Sin anexos asociados</li>';
+            } else {
+                anexosList.innerHTML = anexos.map(anexo => `
+                    <li>
+                        <div class="annex-name">
+                            <strong>📄 ${anexo.nombre}</strong>
+                            ${anexo.demo ? '<span class="annex-badge">DEMO</span>' : ''}
+                        </div>
+                        <button class="btn btn-small btn-primary" onclick="descargarAnexo('${anexo.nombre}', ${anexo.demo})">
+                            ${anexo.tipo === 'PDF' ? '📥 Descargar' : '📊 Abrir'} ${anexo.tipo}
+                        </button>
+                    </li>
+                `).join('');
+            }
+            
+            document.getElementById('detailModal').classList.add('active');
+        }
+
+        // Descargar anexo (demo)
+        function descargarAnexo(nombre, esDemo) {
+            if (esDemo) {
+                alert(`📋 Archivo de demostración\n\n"${nombre}"\n\nEste es un archivo de ejemplo para fines demostrativos del prototipo.\nNo se trata de un documento oficial de la DGCyE.`);
+            } else {
+                alert(`Descargando: ${nombre}`);
+            }
+        }
+
+        // Cerrar modal
+        function cerrarModal() {
+            document.getElementById('detailModal').classList.remove('active');
+        }
+
+        // Limpiar filtros
+        function limpiarFiltros() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('tipoFilter').value = 'todos';
+            document.getElementById('anioFilter').value = 'todos';
+            document.getElementById('mesFilter').value = 'todos';
+            filtrarNormativas();
+        }
+
+        // Mostrar todos
+        function mostrarTodos() {
+            limpiarFiltros();
+        }
+
+        // Filtrar por tipo desde sidebar
+        function filtrarPorTipo(tipo) {
+            document.getElementById('tipoFilter').value = tipo;
+            filtrarNormativas();
+            // Scroll to results
+            document.querySelector('.results-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Buscar por número desde destacados
+        function buscarPorNumero(nro) {
+            document.getElementById('searchInput').value = nro;
+            document.getElementById('tipoFilter').value = 'todos';
+            document.getElementById('anioFilter').value = 'todos';
+            document.getElementById('mesFilter').value = 'todos';
+            filtrarNormativas();
+            document.querySelector('.results-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Event Listeners
+        document.getElementById('searchInput').addEventListener('input', filtrarNormativas);
+        document.getElementById('tipoFilter').addEventListener('change', filtrarNormativas);
+        document.getElementById('anioFilter').addEventListener('change', filtrarNormativas);
+        document.getElementById('mesFilter').addEventListener('change', filtrarNormativas);
+
+        // Sidebar navigation
+        document.querySelectorAll('.sidebar-nav button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.sidebar-nav button').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const section = this.dataset.section;
+                if (section === 'planes') {
+                    alert('📖 Sección Planes de Estudio\n\nEsta sección permite consultar planes de estudio y sus grillas curriculares.\n\nFormatos soportados: PDF y archivos Excel (.xlsx)\n\nPróximamente disponible con contenido completo.');
+                } else if (section === 'destacados') {
+                    document.getElementById('searchInput').value = '';
+                    document.getElementById('tipoFilter').value = 'todos';
+                    document.getElementById('anioFilter').value = 'todos';
+                    document.getElementById('mesFilter').value = 'todos';
+                    filtrarNormativas();
+                }
+            });
+        });
+
+        // Cerrar modal al hacer clic fuera
+        document.getElementById('detailModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                cerrarModal();
+            }
+        });
+
+        // Inicializar la aplicación
+        function inicializarInterfaz() {
+            inicializarFiltros();
+            filtrarNormativas(); // Mostrar todos los resultados al cargar
+        }
+
+        // Ejecutar inicialización cuando el DOM esté listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', inicializarInterfaz);
+        } else {
+            inicializarInterfaz();
+        }
+    </script>
+</body>
+</html>
