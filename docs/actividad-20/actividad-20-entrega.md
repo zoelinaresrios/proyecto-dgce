@@ -7,8 +7,8 @@ Fecha indicada en la consigna: **18 de noviembre de 2026**.
 El repositorio configurado para este proyecto es [zoelinaresrios/proyecto-dgce](https://github.com/zoelinaresrios/proyecto-dgce). Estos documentos se encuentran inicialmente en la copia local; deben subirse a GitHub antes de que aparezcan allí. Una persona con permiso de escritura puede hacerlo desde la carpeta del proyecto:
 
 ```bash
-git add README.md docs/actividad-20-ia.md docs/actividad-20-pitch.md docs/actividad-20-entrega.md
-git commit -m "Documentar entrega de actividad 20"
+git add -A
+git commit -m "Actualizar entrega de actividad 20"
 git push origin main
 ```
 
