@@ -36,7 +36,10 @@ El Portal de Normativas DGCyE facilita la búsqueda y consulta de documentación
 ```
 proyecto-dgce/
 │
-├── index.html          # Prototipo funcional integrado (HTML, CSS y JS)
+├── index.html          # Estructura del portal
+├── css/styles.css      # Estilos
+├── js/app.js           # Datos y funcionamiento del portal
+├── docs/qr-portal.svg  # QR de la dirección pública
 │
 ├── docs/
 │   ├── requerimientos.md                # Requerimientos funcionales y no funcionales (Actividad 18)
@@ -66,11 +69,18 @@ El prototipo incluye 4 normativas de demostración unificadas de las Actividades
 
 ## Entregables
 
+### Actividad 20
+- [Investigación sobre Hugging Face y propuesta de asistente](docs/actividad-20-ia.md). El asistente es una propuesta y todavía no está integrado.
+- [Guía de publicación y entrega](docs/actividad-20-entrega.md).
+- [Guion para el pitch final](docs/actividad-20-pitch.md).
+- [Portal publicado](https://proyecto-dgce.vercel.app/).
+- [Código QR del portal](docs/qr-portal.svg): escanear para comprobar el acceso.
+
 ### Actividad 18
 - Documentación de requerimientos, minuta de entrevista y mockup visual.
 
 ### Actividad 19
-- **A. Código fuente**: Prototipo funcional integrado en `index.html` con HTML, CSS y JavaScript Vanilla.
+- **A. Código fuente**: Prototipo funcional con HTML, CSS y JavaScript Vanilla en archivos separados.
 - **B. Demostración funcional**: Búsqueda dinámica, filtrado combinado, visualización de detalles y anexos, diseño responsive.
 
 ## Autores
