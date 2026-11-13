@@ -1,12 +1,14 @@
 # Portal de Normativas DGCyE
 
-Portal web dinámico para centralizar la búsqueda, consulta y visualización de normativas, resoluciones, disposiciones, circulares y planes de estudio de la Dirección General de Cultura y Educación (DGCyE) de la Provincia de Buenos Aires.
+Desarrollamos este portal para reunir en un mismo lugar la búsqueda y consulta de normativas, resoluciones, disposiciones, circulares y planes de estudio de la Dirección General de Cultura y Educación (DGCyE) de la Provincia de Buenos Aires.
+
+**Web del proyecto:** [proyecto-dgce.vercel.app](https://proyecto-dgce.vercel.app/).
 
 Proyecto correspondiente a las Actividades 18, 19 y 20 de la materia Proyecto de Implementación de Sitios Web Dinámicos (PWD) - EEST N.º 1 "Eduardo Ader", 7.º año de Programación.
 
 ## Descripción
 
-El Portal de Normativas DGCyE facilita la búsqueda y consulta de documentación institucional educativa, permitiendo a inspectores, directores de escuelas técnicas y docentes encontrar normativas sin tener que revisar manualmente numerosos archivos PDF. 
+Nuestro objetivo es facilitar la consulta de documentación educativa para que inspectores, directivos y docentes puedan encontrar normativas sin revisar numerosos archivos PDF por separado. Trabajamos con datos de ejemplo para representar el funcionamiento del portal.
 
 ## Funcionalidades Implementadas (Actividad 19)
 
@@ -42,18 +44,10 @@ proyecto-dgce/
 ├── js/app.js           # Datos y funcionamiento del portal
 ├── docs/
 │   ├── actividad-18/       # Requerimientos, informe y mockup
-│   └── actividad-20/       # Investigación, guía, pitch y QR
-│
-
+│   └── actividad-20/       # Informe de investigación y QR del portal
 ├── README.md
 └── Licencia.md
 ```
-
-## Cómo Ejecutar el Prototipo
-
-1. Clonar o descargar el repositorio.
-2. Abrir el archivo `index.html` directamente en cualquier navegador web moderno (Chrome, Firefox, Edge, Safari).
-3. No requiere servidor web ni instalación de dependencias. Los iconos de Font Awesome requieren conexión a Internet.
 
 ## Datos de Ejemplo
 
@@ -66,15 +60,12 @@ El prototipo incluye 4 normativas de demostración unificadas de las Actividades
 
 *Los archivos anexos y datos son ficticios, utilizados únicamente con fines demostrativos.*
 
-## Entregables
+## Documentación
 
 ### Actividad 20
 - [Informe de investigación en PDF](docs/actividad-20/Actividad%2020%20-%20Investigacion%20Hugging%20Face.pdf).
-- [Investigación sobre Hugging Face y propuesta de asistente](docs/actividad-20/actividad-20-ia.md). El asistente es una propuesta y todavía no está integrado.
-- [Guía de publicación y entrega](docs/actividad-20/actividad-20-entrega.md).
-- [Guion para el pitch final](docs/actividad-20/actividad-20-pitch.md).
-- [Portal publicado](https://proyecto-dgce.vercel.app/).
-- [Código QR del portal](docs/actividad-20/qr-portal.svg): escanear para comprobar el acceso.
+- [Investigación sobre Hugging Face](docs/actividad-20/actividad-20-ia.md). Analizamos una posible incorporación de IA al portal; esta versión no incluye un modelo integrado.
+- [Código QR de la web](docs/actividad-20/qr-portal.svg).
 
 ### Actividad 18
 - Documentación de requerimientos, minuta de entrevista y mockup visual.

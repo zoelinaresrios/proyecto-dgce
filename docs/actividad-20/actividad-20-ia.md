@@ -1,38 +1,44 @@
 # Actividad 20: investigación sobre Hugging Face
 
+**Proyecto:** Portal de Normativas DGCyE.
+
+**Integrantes:** Zoe Linares, Alina Romero, Valentin Wagner y Thiago Salaberry.
+
+**Web:** [proyecto-dgce.vercel.app](https://proyecto-dgce.vercel.app/).
+
 ## Objetivo
 
-Explorar cómo un asistente de inteligencia artificial podría ayudar a docentes e inspectores a encontrar y resumir normativas en el Portal DGCyE. Esta entrega es una **investigación**: el portal todavía no está conectado a un modelo de IA y no se realizó una prueba de inferencia como parte de este registro.
+Investigamos cómo podríamos incorporar inteligencia artificial al Portal de Normativas DGCyE para ayudar a docentes e inspectores a encontrar y comprender documentación educativa. Elegimos Hugging Face para analizar sus herramientas y plantear una posible aplicación en nuestro proyecto. El alcance de este trabajo es la investigación y la propuesta de funcionamiento; no integramos un modelo al portal ni realizamos una prueba de inferencia.
 
 ## ¿Qué es Hugging Face?
 
-Hugging Face es una plataforma que reúne modelos, conjuntos de datos y aplicaciones de aprendizaje automático. Su servicio Inference Providers permite acceder a modelos alojados por distintos proveedores mediante una API. Un modelo de lenguaje recibe instrucciones y texto y genera una respuesta.
+Hugging Face es una plataforma que reúne modelos, conjuntos de datos y aplicaciones de aprendizaje automático. Su servicio Inference Providers permite acceder mediante una API a modelos alojados por distintos proveedores. Un modelo de lenguaje procesa instrucciones y genera texto a partir de la información que recibe (Hugging Face, s. f.-a).
 
-## Aplicación propuesta
+## Aplicación en nuestro portal
 
-Una persona podría preguntar: «¿Cuáles son las pautas para ferias de ciencias?». El portal buscaría primero documentos pertinentes y enviaría al modelo la pregunta y fragmentos de esos documentos. El asistente produciría una respuesta breve con la identificación de las fuentes. Si los textos disponibles no contienen la respuesta, debería indicarlo.
+Nuestra propuesta consiste en complementar el buscador con un asistente que responda preguntas sobre las normativas. Por ejemplo, un docente podría consultar: «¿Cuáles son las pautas para ferias de ciencias?». El sistema buscaría documentos relacionados, enviaría al modelo la pregunta y los fragmentos relevantes, y mostraría una respuesta breve con sus fuentes. Cuando los documentos no contengan la información necesaria, el asistente indicaría esa limitación.
 
-El proyecto actual incluye una circular de ejemplo sobre ferias de ciencia, pero sus datos y anexos son ficticios y la descripción disponible no necesariamente contiene las pautas completas. Por lo tanto, no permite afirmar cuáles son las pautas oficiales. Para una aplicación real se necesitarían documentos oficiales completos y verificados.
+La circular sobre ferias que incluimos en el prototipo es ficticia y su descripción no contiene las pautas oficiales completas. Para llevar esta propuesta a una aplicación real necesitaríamos documentos oficiales, completos, verificados y actualizados.
 
-## Posible implementación
+## Funcionamiento propuesto
 
-1. Agregar al portal un campo de pregunta y un área de respuesta.
-2. Buscar en los documentos disponibles los fragmentos relacionados con la consulta.
-3. Enviar la pregunta y esos fragmentos a una función de servidor propia mediante `fetch`.
-4. La función consulta un modelo disponible mediante Hugging Face Inference Providers y devuelve la respuesta al navegador.
-5. Mostrar la respuesta junto con las fuentes y permitir consultar el documento original.
+Planteamos un formulario de consulta y un área de respuesta dentro del portal. Al recibir una pregunta, el sistema seleccionaría fragmentos relacionados y los enviaría mediante Fetch a una función de servidor. Esa función consultaría un modelo a través de Hugging Face Inference Providers y devolvería la respuesta al navegador. El resultado incluiría los enlaces a los documentos utilizados (Hugging Face, s. f.-a; MDN Web Docs, s. f.).
 
-La disponibilidad de modelos depende de los proveedores. Para una prueba se puede elegir un modelo de conversación disponible en el [Inference Playground](https://huggingface.co/inference) y registrar cuál se usó. El modelo puede cometer errores o inventar información: las respuestas deben verificarse contra los documentos. También hay que contemplar errores de conexión, límites de uso y disponibilidad del servicio.
+También contemplamos los estados de espera, las consultas vacías, los errores de conexión y la ausencia de resultados. El modelo no conoce automáticamente las normativas del proyecto: nuestra aplicación tendría que seleccionar y proporcionarle los textos correspondientes.
 
-## Seguridad y costos
+## Seguridad, costos y limitaciones
 
-Las solicitudes a Inference Providers requieren un token con permisos adecuados. El token debe guardarse como variable de entorno del servidor y nunca incluirse en `index.html`, en JavaScript enviado al navegador ni en el repositorio. Antes de utilizar datos personales o institucionales se debe evaluar si está permitido enviarlos a un servicio externo.
+En la propuesta, el token de acceso se guardaría en una variable de entorno del servidor, fuera del código del navegador y del repositorio (Vercel, s. f.). También consideramos la privacidad de los datos antes de enviar información a un servicio externo.
 
-Hugging Face ofrece créditos de prueba limitados; su disponibilidad, condiciones y precios pueden cambiar. Consultar la página de precios antes de usar el servicio y no asumir que el uso es ilimitado o gratuito.
+El uso del servicio depende de la disponibilidad de los proveedores, los límites de consumo y los precios vigentes (Hugging Face, s. f.-b). Además, las respuestas pueden contener errores u omisiones. Por eso planteamos mostrar las fuentes y conservar el acceso a los documentos originales para contrastar la información.
 
-## Fuentes consultadas
+## Conclusión
 
-- [Hugging Face: Inference Providers](https://huggingface.co/docs/inference-providers/index).
-- [Hugging Face: precios y facturación](https://huggingface.co/docs/inference-providers/en/pricing).
-- [MDN: uso de Fetch](https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Using_Fetch).
-- [Vercel: variables de entorno](https://vercel.com/docs/environment-variables).
+Consideramos que un asistente podría facilitar la consulta de normativas mediante preguntas en lenguaje natural. Para incorporarlo necesitaríamos una base de documentos confiables, un mecanismo para recuperar fragmentos relevantes y una función de servidor que consulte el modelo. En esta actividad dejamos planteada esa posibilidad como una mejora futura del portal.
+
+## Referencias
+
+- Hugging Face. (s. f.-a). [Inference Providers](https://huggingface.co/docs/inference-providers/index).
+- Hugging Face. (s. f.-b). [Pricing and billing](https://huggingface.co/docs/inference-providers/en/pricing).
+- MDN Web Docs. (s. f.). [Uso de Fetch](https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Using_Fetch).
+- Vercel. (s. f.). [Environment variables](https://vercel.com/docs/environment-variables).
